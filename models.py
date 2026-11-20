@@ -22,8 +22,15 @@ class ObatUpdate(ObatBase):
     """Body untuk PUT /obat/{id} (pembaruan penuh)."""
 
 
-class ObatResponse(ObatBase):
+class ObatResponse(BaseModel):
+    """Respon: TANPA batas stok >= 0, agar data stok negatif hasil demo race
+    condition (Tahap 1 B3) tetap bisa ditampilkan, bukan memicu error 500."""
     id: int
+    nama: str
+    kategori: str
+    produsen: str
+    harga: float
+    stok: int
 
 
 class TransactionCreate(BaseModel):

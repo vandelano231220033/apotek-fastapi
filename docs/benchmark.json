@@ -1,0 +1,6 @@
+[
+  {"skenario": "GET /obat",          "worker": 1, "total_waktu_s": 0.20, "throughput_rps": 490.63, "latensi_ms": 31.88},
+  {"skenario": "GET /obat",          "worker": 4, "total_waktu_s": 0.15, "throughput_rps": 689.33, "latensi_ms": 23.27},
+  {"skenario": "POST /transactions", "worker": 1, "total_waktu_s": 1.79, "throughput_rps": 27.87, "latensi_ms": 324.96},
+  {"skenario": "POST /transactions", "worker": 4, "total_waktu_s": 1.27, "throughput_rps": 39.52, "latensi_ms": 235.44}
+]
