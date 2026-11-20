@@ -1,0 +1,8 @@
+fastapi>=0.110
+uvicorn[standard]>=0.29
+aiosqlite>=0.20
+pydantic>=2.6
+httpx>=0.27
+locust>=2.24
+# hanya untuk membuat laporan PDF (docs/build_report.py)
+reportlab>=4.0
