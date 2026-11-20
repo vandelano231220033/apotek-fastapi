@@ -98,17 +98,3 @@ locust -f locustfile.py WriteUser --headless -u 10 -r 10 --host http://127.0.0.1
 ```
 Locust berhenti otomatis setelah 100 (read) / 50 (write) request dan mencetak
 **RINGKASAN** (total waktu, throughput, rata-rata latensi). Catat ke `docs/benchmark.json`.
-
-## Laporan PDF
-
-```bash
-# 1. isi docs/laporan_config.json (nama, NIM, link) dan docs/benchmark.json
-# 2. taruh docs/ss_tanpa_lock.png dan docs/ss_dengan_lock.png
-python docs/build_report.py      # -> docs/laporan_uts.pdf
-```
-
-## Catatan desain
-
-- Kolom `stok` sengaja tanpa `CHECK (stok >= 0)` agar overselling pada Tahap 1 terlihat; validasi dilakukan di aplikasi.
-- Pemotongan stok dilakukan **saat POST** (sebelum respon) sehingga penolakan 409 bisa dikembalikan langsung. Background task hanya menangani `processing -> completed/failed` (stok dikembalikan bila failed).
-- `asyncio.Lock` hanya berlaku dalam satu proses. Agar tetap benar pada multi-worker, versi berlock memakai juga `UPDATE ... WHERE stok >= qty` (atomik di SQLite).
